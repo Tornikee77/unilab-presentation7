@@ -12,6 +12,7 @@ export interface GithubUser {
   blog: string;
   twitter_username: string;
   company: string;
+  login: string;
 }
 
 export function useGithubUser() {
@@ -19,22 +20,28 @@ export function useGithubUser() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchUser = async (username: string) => {
+  const fetchUser = (username: string) => {
     setLoading(true);
     setError(null);
 
-    try {
-      const res = await fetch(`https://api.github.com/users/${username}`);
-      if (!res.ok) throw new Error("User not found");
-
-      const data: GithubUser = await res.json();
-      setUserData(data);
-    } catch (err: any) {
-      setError(err.message);
-      setUserData(null);
-    } finally {
-      setLoading(false);
-    }
+    fetch(`https://api.github.com/users/${username}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("User not found");
+        }
+        return res.json();
+      })
+      .then((data: GithubUser) => {
+        console.log("Fetched GitHub user data:", data);
+        setUserData(data);
+      })
+      .catch((err: any) => {
+        setError(err.message);
+        setUserData(null);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return { userData, loading, error, fetchUser };
