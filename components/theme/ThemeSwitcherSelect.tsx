@@ -6,7 +6,7 @@ type Props = {
 const ThemeSwitcherSelect = ({ isLight, setTheme }: Props) => {
   return (
     <button onClick={() => setTheme(isLight ? "dark" : "light")}>
-      ThemeSwitcherSelect
+      {isLight ? "🌙" : "☀️"}
     </button>
   );
 };

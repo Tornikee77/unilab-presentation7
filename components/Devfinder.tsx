@@ -22,7 +22,7 @@ export const DevFinder = () => {
           <h1 className="text-2xl font-bold text-[var(--h2-color)]">
             devfinder
           </h1>
-          <ThemeSwitcher />
+          <ThemeSwitcher text="click me" />
         </div>
 
         <div className="relative mb-6">

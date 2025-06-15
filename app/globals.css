@@ -7,8 +7,8 @@
 .light {
   --basic-color: #ffffff;
   --btn-color: #0079ff;
-  --background-color: #141d2f;
-  --folllower-cont-color: #1e2a47;
+  --background-color: #f5f5f5;
+  --folllower-cont-color: var(--backgroundColor);
   --profileInfo-color: #2b3442;
   --username-and-join: #697c9a;
   --body-color: #f6f8ff;
